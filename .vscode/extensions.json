@@ -3,6 +3,7 @@
         "tobiah.unity-tools",
         "nhoizey.gremlins",
         "unity.unity-debug",
-        "ms-dotnettools.csharp"
+        "ms-dotnettools.csharp",
+        "Unity.unity-debug"
     ]
 }
