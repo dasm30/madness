@@ -13,22 +13,25 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         SetupNewInputs();
+        EventManager.TimedEvent += GetNewInputsEvent;
+    }
+
+    void OnDisable() {
+        EventManager.TimedEvent -= GetNewInputsEvent;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            GetNewInputs(nextInputs);
-        }
+
     }
 
+    void GetNewInputsEvent() {
+        GetNewInputs(nextInputs);
+    }
     KeyCode[] GetNewInputs(List<KeyCode> inputs) {
         KeyCode[] availabletInputs = letters.Where(letter => !currentInputs.Contains(letter)).ToArray();
-        print(availabletInputs.Length);
         KeyCode newInput = availabletInputs[Random.Range(0, availabletInputs.Length)];
-        print(newInput.ToString());
         nextInputs.Add(newInput);
-        print(nextInputs.Count);
         if (nextInputs.Count < 3) {
             nextInputs = GetNewInputs(nextInputs).ToList();
         }
